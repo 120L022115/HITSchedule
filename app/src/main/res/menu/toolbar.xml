@@ -68,4 +68,9 @@
         android:title="@string/select_language"
         android:icon="@drawable/menu"
         app:showAsAction="collapseActionView" />
+
+    <item android:id="@+id/changeweek"
+        android:title="修改当前周"
+        android:icon="@drawable/menu"
+        app:showAsAction="collapseActionView" />
 </menu>

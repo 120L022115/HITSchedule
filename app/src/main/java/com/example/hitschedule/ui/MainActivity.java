@@ -2,7 +2,9 @@ package com.example.hitschedule.ui;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -16,6 +18,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -701,12 +705,32 @@ public class MainActivity extends BaseCheckPermissionActivity implements View.On
                         reportIntent.putExtra("usrId", usrId);
                         reportIntent.putExtra("pwd", pwd);
                         startActivity(reportIntent);
+                        break;
+                    case R.id.changeweek:
+                        showWeekSelect();
+                        break;
                 }
                 return false;
             }
         });
     }
+    private void showWeekSelect(){
+        final EditText inputServer = new EditText(this);
+        inputServer.setFilters(new InputFilter[]{new InputFilter.LengthFilter(50)});
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("week select").setIcon(android.R.drawable.ic_dialog_info).setView(inputServer)
+                .setNegativeButton("cancel", null);
+        builder.setPositiveButton("confirm", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                String _sign = inputServer.getText().toString();
+                    Toast.makeText(getApplicationContext(),_sign,Toast.LENGTH_SHORT).show();
 
+            }
+
+        });
+
+        builder.show();
+    }
     /**
      * 语言选择dialog
      */

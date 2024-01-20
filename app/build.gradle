@@ -11,10 +11,7 @@ android {
             storePassword 'hitschedule'
         }
         debug{
-            keyAlias 'key0'
-            keyPassword 'hitschedule'
-            storeFile file('../hitschedule.jks')
-            storePassword 'hitschedule'
+
         }
     }
     compileSdkVersion 29
